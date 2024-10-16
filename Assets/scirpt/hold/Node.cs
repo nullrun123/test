@@ -16,7 +16,7 @@ public class Node : MonoBehaviour
 
     private Renderer rend;
     private Color startcolor;
-    
+    public TurretBlueprint blueprint;
     //shop
     buildManager buildManager;
 
@@ -45,11 +45,12 @@ public class Node : MonoBehaviour
         //shop
         if (EventSystem.current.IsPointerOverGameObject())
             return;
+
         //shop
         if (!buildManager.CanBuild)
             return;
 
-        if(turret != null)
+        if (turret != null)
         {
             Debug.Log("Can't");
             return;
@@ -83,6 +84,7 @@ public class Node : MonoBehaviour
 
     }
 
+  
    
     void OnMouseExit()
     {

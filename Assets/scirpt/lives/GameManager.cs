@@ -17,10 +17,10 @@ public class GameManager : MonoBehaviour
         if (GameIsOver)
             return;
 
-        if (Input.GetKeyDown("e"))
-        {
-            Endgame();
-        }
+        //if (Input.GetKeyDown("e"))
+        //{
+            //Endgame();
+        //}
         if(PlayerState.Lives <= 0)
         {
             Endgame();

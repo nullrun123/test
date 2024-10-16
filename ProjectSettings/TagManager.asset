@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - SlowZone
+  - TargetObject
+  - textme
   layers:
   - Default
   - TransparentFX
@@ -12,7 +15,7 @@ TagManager:
   - env
   - Water
   - UI
-  - 
+  - turret
   - 
   - 
   - 

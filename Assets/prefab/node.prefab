@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 2366144055744532218}
   - component: {fileID: 8609399234154695820}
   - component: {fileID: 4094730000897464067}
-  - component: {fileID: 6652397886645077658}
-  m_Layer: 0
+  - component: {fileID: 2490875152231393740}
+  - component: {fileID: -6685669944037593640}
+  m_Layer: 3
   m_Name: node
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4739716289924952872}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.8095884, y: 6.3245487, z: 2.1999285}
   m_LocalScale: {x: 4, y: 1, z: 4}
   m_ConstrainProportionsScale: 0
@@ -63,7 +64,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 616e74a8c01e0f14d99d97eba57fba95, type: 2}
+  - {fileID: 2100000, guid: aabb820a8a3e42541bdb130dbcc87d0f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +108,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6652397886645077658
+--- !u!122 &2490875152231393740
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4739716289924952872}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 2173077247
+  m_Size: 3
+--- !u!114 &-6685669944037593640
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,7 +132,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90033312ca84f89449abe8c6d0ff032a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 0.6698113, g: 0.9044218, b: 1, a: 0}
-  notEnoughtMoney: {r: 1, g: 0.57924527, b: 0.57924527, a: 0}
-  positionOffest: {x: 0, y: 1.364, z: 0}
+  hoverColor: {r: 0.2924527, g: 0.9378299, b: 1, a: 0}
+  notEnoughtMoney: {r: 1, g: 0.6245283, b: 0.6245283, a: 0}
+  positionOffest: {x: -5.58, y: 0.9, z: 0}
   turret: {fileID: 0}
+  blueprint:
+    prefab: {fileID: 0}
+    cost: 0

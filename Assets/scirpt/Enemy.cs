@@ -1,67 +1,85 @@
-using System;
+﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Android.Types;
-using UnityEngine;
+using System.Collections.Generic; 
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     public float speed = 10f;
-
-    public float health = 100;
-
+    public float speed2 = 10f;
+    public float originalSpeed;
+    public Coroutine slowCoroutine;
+    public float startHealth = 100;
+    public float health;
     public int worth = 50;
-    private Transform target;
-    private int wavepointINdEx = 0;
+    private bool isDead = false;
 
-     void Start()
+    [Header("Unity stuff")]
+    public List<Image> healthBars; 
+
+    void Start()
     {
-        target = Waypoints.points[0];
-
+        originalSpeed = speed;
+        health = startHealth;
     }
 
     public void TakeDamage(float amount)
     {
         health -= amount;
 
-        if(health <= 0)
+       
+        foreach (Image healthBar in healthBars)
+        {
+            healthBar.fillAmount = health / startHealth;
+        }
+
+        if (health <= 0 && !isDead)
         {
             Die();
         }
     }
+
+    public void StopSlowing()
+    {
+        if (slowCoroutine != null)
+        {
+            StopCoroutine(slowCoroutine);
+            slowCoroutine = null;
+        }
+        ResetSpeed();
+    }
+
+    public void ResetSpeed()
+    {
+        speed = speed2;
+        Debug.Log($"Speed reset to original: {speed}");
+    }
+
+    IEnumerator SlowEffect(float slowPct)
+    {
+        speed = originalSpeed * (1f - slowPct);
+        yield return new WaitForSeconds(1f);
+    }
+
+    public void Slow(float slowPct)
+    {
+        if (slowCoroutine != null)
+        {
+            StopCoroutine(slowCoroutine);
+        }
+        slowCoroutine = StartCoroutine(SlowEffect(slowPct));
+    }
+
+    public void Slownew(float pct)
+    {
+        originalSpeed = speed * (1.5f - pct);
+    }
+
     void Die()
     {
-        PlayerState.money -= worth;
-        Destroy(gameObject);
-    }
-
-   void Update()
-    {
-        Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
-
-        if(Vector3.Distance(transform.position, target.position) <= 0.4f)
-        {
-            GetNextWaypoints();
-        }
-    }
-
-     void GetNextWaypoints()
-    {
-        if(wavepointINdEx >= Waypoints.points.Length - 1)
-        {
-            EndPath();
-            Destroy(gameObject);
-            return;
-
-        }
-        wavepointINdEx++;
-        target = Waypoints.points[wavepointINdEx];
-    }
-
-    void EndPath()
-    {
-        PlayerState.Lives--;
+        isDead = true;
+        PlayerState.money += worth;
+        WaveSpawner.EnemiesAlive--;
         Destroy(gameObject);
     }
 }

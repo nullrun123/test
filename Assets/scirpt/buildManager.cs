@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
@@ -25,8 +26,14 @@ public class buildManager : MonoBehaviour
    
     public GameObject standardTurretPrefab;
     public GameObject RocketStandardTurret;
+  
+
+
     public GameObject BuildEffect;
     private TurretBlueprint turretToBuild;
+
+  
+
 
     //Canbuild buy
     public bool CanBuild {  get {  return turretToBuild != null; } }    
@@ -52,9 +59,16 @@ public class buildManager : MonoBehaviour
         GameObject effect = (GameObject)Instantiate(BuildEffect, node.GetbuildPosition(), Quaternion.identity);
         Destroy(effect, 5f);
     }
-    //buy
+
+    //buy new
+
     public void SelectTurretTobuild(TurretBlueprint turret)
     {
         turretToBuild = turret;
+      
+    }
+    internal void BuildTurretOn(Node1 node1)
+    {
+        throw new NotImplementedException();
     }
 }
